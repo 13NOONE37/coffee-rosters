@@ -1,0 +1,70 @@
+@import 'tailwindcss';
+@import './brand/theme.css';
+
+@layer components {
+  .text-alternate-big {
+    @apply font-fraunces font-black text-[4.5rem] leading-[4.5rem]; /* 72px */
+
+    @media (min-width: theme('screens.md')) {
+      @apply text-[6rem] leading-[4.5rem]; /* 96px, 72px */
+    }
+
+    @media (min-width: theme('screens.lg')) {
+      @apply text-[9.375rem] leading-[4.5rem]; /* 150px, 72px */
+    }
+  }
+  .text-h1 {
+    @apply font-fraunces font-black text-[2.5rem] leading-[2.5rem]; /* 40px */
+
+    @media (min-width: theme('screens.md')) {
+      @apply text-[3rem] leading-[3rem]; /* 48px */
+    }
+
+    @media (min-width: theme('screens.lg')) {
+      @apply text-[4.5rem] leading-[4.5rem]; /* 72px */
+    }
+  }
+  .text-h2 {
+    @apply font-fraunces font-black text-[1.75rem] leading-[1.75rem]; /* 28px */
+
+    @media (min-width: theme('screens.md')) {
+      @apply text-[2rem] leading-[3rem]; /* 32px, 48px */
+    }
+
+    @media (min-width: theme('screens.lg')) {
+      @apply text-[2.5rem] leading-[3rem]; /* 40px, 49px */
+    }
+  }
+  .text-h3 {
+    @apply font-fraunces font-black text-[1.75rem] leading-[2rem]; /* 28px, 32px */
+
+    @media (min-width: theme('screens.lg')) {
+      @apply text-[2rem] leading-[2.25rem]; /* 32px, 36px */
+    }
+  }
+  .text-h4 {
+    @apply font-fraunces font-black text-[1.5rem] leading-[2rem]; /* 24px, 32px */
+  }
+  .text-body {
+    @apply font-barlow font-medium text-[0.9375rem] leading-[1.5625rem]; /* 15px, 25px */
+
+    @media (min-width: theme('screens.lg')) {
+      @apply text-[1rem] leading-[1.625rem]; /* 16px, 26px */
+    }
+  }
+  .text-nav {
+    @apply font-barlow font-bold text-[0.75rem] leading-[0.9375rem] tracking-[0.0575rem]; /* 12px, 15px, 0.92px */
+  }
+
+  /* .text-heading-3 {
+    @apply font-fraunces font-black text-[32px] leading-[36px];
+
+    @media (min-width: theme('screens.md')) {
+      @apply text-[50px] leading-[55px];
+    }
+
+     &:hover {
+      @apply text-green-500 bg-secondary/80;
+    } 
+  } */
+}

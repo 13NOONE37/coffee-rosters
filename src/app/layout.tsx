@@ -1,15 +1,15 @@
 import type { Metadata } from 'next';
-import { Barlow, Fraunces, Geist, Geist_Mono } from 'next/font/google';
-import './globals.css';
+import { Barlow, Fraunces } from 'next/font/google';
+import '@/styles/globals.css';
 
 const fraunces = Fraunces({
-  variable: '--font-fraunces',
+  variable: '--font-frauncesSerif',
   weight: ['900'],
   subsets: ['latin'],
 });
 
 const barlow = Barlow({
-  variable: '--font-barlow',
+  variable: '--font-barlowSansSerif',
   weight: ['500', '700'],
   subsets: ['latin'],
 });
@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${fraunces.variable} ${barlow.variable} antialiased`}>
+      <body className={` ${fraunces.variable} ${barlow.variable} antialiased`}>
         {children}
       </body>
     </html>
