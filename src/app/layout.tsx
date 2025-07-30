@@ -26,8 +26,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={` ${fraunces.variable} ${barlow.variable} antialiased`}>
-        {children}
+      <body
+        className={`${fraunces.variable} ${barlow.variable} bg-surface-page antialiased`}
+      >
+        <div className="px-6 pb-18">{children}</div>
       </body>
     </html>
   );

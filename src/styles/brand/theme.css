@@ -7,12 +7,11 @@
 @theme {
   /* Breakpoints */
   --breakpoint-sm: 640px;
-  --breakpoint-md: 497px;
+  --breakpoint-md: 768px;
   --breakpoint-lg: 1024px;
   --breakpoint-xl: 1280px;
   --breakpoint: 1536px;
 
-  --spacing-marcin:15px
   /* Colors */
   --color-brand-primary: #0e8784;
   --color-brand-primary-light: #66d2cf;
@@ -26,6 +25,4 @@
   --color-body-inverted: #fefcf7;
 
   --color-ui-neutral: #83888f;
-
-  /*we should add possible font sizes instead of making components*/
 }
