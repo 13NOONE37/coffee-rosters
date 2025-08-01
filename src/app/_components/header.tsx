@@ -1,13 +1,24 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      return document.body.classList.add('prevent-scroll-menu');
+    }
+    document.body.classList.remove('prevent-scroll-menu');
+  }, [isMenuOpen]);
+
   return (
-    <header className="flex justify-between items-center py-8">
-      <Link className="w-[236px] h-[26px] relative" href={'/'}>
+    <header className="flex justify-between items-center py-8 md:py:10 lg:py-11">
+      <Link
+        className="w-[162px] h-[17px] md:w-[236px] md:h-[26px] relative"
+        href={'/'}
+      >
         <Image
           src={'/assets/shared/desktop/logo.svg'}
           fill
@@ -37,19 +48,28 @@ export function Header() {
           isMenuOpen ? 'not-sr-only' : 'sr-only'
         } md:not-sr-only`}
       >
-        <ul className="flex flex-col place-items-center gap-8">
+        <ul className="flex flex-col md:flex-row place-items-center gap-8">
           <li>
-            <Link href="/home" className="text-h4 text-body uppercase ">
+            <Link
+              href="/home"
+              className="text-nav-menu text-body md:text-ui-neutral uppercase"
+            >
               Home
             </Link>
           </li>
           <li>
-            <Link href="/about" className="text-h4 text-body uppercase ">
+            <Link
+              href="/about"
+              className="text-nav-menu text-body md:text-ui-neutral uppercase"
+            >
               About Us
             </Link>
           </li>
           <li>
-            <Link href="/plan" className="text-h4 text-body uppercase ">
+            <Link
+              href="/plan"
+              className="text-nav-menu text-body md:text-ui-neutral uppercase"
+            >
               Create Your Plan
             </Link>
           </li>

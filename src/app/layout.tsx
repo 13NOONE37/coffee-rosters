@@ -29,7 +29,10 @@ export default function RootLayout({
       <body
         className={`${fraunces.variable} ${barlow.variable} bg-surface-page antialiased`}
       >
-        <div className="px-6 pb-18">{children}</div>
+        {/* Footer margin:  pb-18 md:pb-18 lg:pb-22*/}
+        <div className="px-6 md:px-9.5 lg:px-20  max-w-[1440px] mx-auto">
+          {children}
+        </div>
       </body>
     </html>
   );

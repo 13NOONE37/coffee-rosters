@@ -52,19 +52,16 @@
       @apply text-[1rem] leading-[1.625rem]; /* 16px, 26px */
     }
   }
+
   .text-nav {
     @apply font-barlow font-bold text-[0.75rem] leading-[0.9375rem] tracking-[0.0575rem]; /* 12px, 15px, 0.92px */
   }
 
-  /* .text-heading-3 {
-    @apply font-fraunces font-black text-[32px] leading-[36px];
+  .text-nav-menu {
+    @apply font-fraunces font-black text-[1.5rem] leading-[2rem]; /* 24px, 32px */
 
     @media (min-width: theme('screens.md')) {
-      @apply text-[50px] leading-[55px];
+      @apply font-barlow font-bold text-[0.75rem] leading-[0.9375rem] tracking-[0.0575rem]; /* 12px, 15px, 0.92px */
     }
-
-     &:hover {
-      @apply text-green-500 bg-secondary/80;
-    } 
-  } */
+  }
 }
