@@ -52,7 +52,7 @@ export function Header() {
           <li>
             <Link
               href="/home"
-              className="text-nav-menu text-body md:text-ui-neutral uppercase"
+              className="text-nav-menu text-body md:text-ui-neutral hover:text-body uppercase"
             >
               Home
             </Link>
@@ -60,7 +60,7 @@ export function Header() {
           <li>
             <Link
               href="/about"
-              className="text-nav-menu text-body md:text-ui-neutral uppercase"
+              className="text-nav-menu text-body md:text-ui-neutral  hover:text-body uppercase"
             >
               About Us
             </Link>
@@ -68,7 +68,7 @@ export function Header() {
           <li>
             <Link
               href="/plan"
-              className="text-nav-menu text-body md:text-ui-neutral uppercase"
+              className="text-nav-menu text-body md:text-ui-neutral hover:text-body uppercase"
             >
               Create Your Plan
             </Link>
