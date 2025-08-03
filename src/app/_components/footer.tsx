@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export function Footer() {
   return (
-    <footer className="bg-surface-card py-13.5 flex flex-col items-center gap-12">
+    <footer className="bg-surface-card py-13.5 md:py-14.5 lg:py-12 lg:px-21 flex flex-col lg:grid grid-cols-[auto_1fr_auto] items-center max-sm:gap-12">
       <Link href={'/'}>
         <Logo
           className="w-[217px] h-[23px] md:w-[236px] md:h-[26px]"
@@ -14,7 +14,7 @@ export function Footer() {
         />
       </Link>
 
-      <nav className={``}>
+      <nav className={`md:max-lg:mt-8  lg:pl-8 xl:pl-25.5`}>
         <ul className="flex flex-col md:flex-row place-items-center gap-8">
           <li>
             <Link
@@ -42,19 +42,19 @@ export function Footer() {
           </li>
         </ul>
       </nav>
-      <ul className="flex place-items-center gap-6">
+      <ul className="flex place-items-center gap-6 md:max-lg:mt-16">
         <li className="flex">
-          <Link href={'#facebook'}>
+          <Link href={'#facebook'} aria-label="Facebook">
             <FacebookIcon className="w-6 h-6 fill-body-inverted hover:fill-accent-secondary" />
           </Link>
         </li>
         <li className="flex">
-          <Link href={'#twitter'}>
-            <TwitterIcon className="w-6 height-5 fill-body-inverted hover:fill-accent-secondary" />
+          <Link href={'#twitter'} aria-label="Twitter">
+            <TwitterIcon className="w-6 h-5 fill-body-inverted hover:fill-accent-secondary" />
           </Link>
         </li>
         <li className="flex">
-          <Link href={'#instagram'}>
+          <Link href={'#instagram'} aria-label="Instagram">
             <InstagramIcon className="w-6 h-6 fill-body-inverted hover:fill-accent-secondary" />
           </Link>
         </li>

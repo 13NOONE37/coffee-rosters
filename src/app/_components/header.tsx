@@ -38,7 +38,7 @@ export function Header() {
         )}
       </button>
       <nav
-        className={`bg-surface-page fixed top-[90px] left-0 w-full h-full flex flex-col place-items-center pt-10 ${
+        className={`bg-surface-page fixed top-[81px] left-0 w-full h-full flex flex-col place-items-center pt-10 ${
           isMenuOpen ? 'not-sr-only' : 'sr-only'
         } md:not-sr-only`}
       >
