@@ -18,7 +18,7 @@ export function Footer() {
         <ul className="flex flex-col md:flex-row place-items-center gap-8">
           <li>
             <Link
-              href="/home"
+              href="/"
               className="text-nav text-ui-neutral hover:text-body-inverted uppercase"
             >
               Home
@@ -34,7 +34,7 @@ export function Footer() {
           </li>
           <li>
             <Link
-              href="/plan"
+              href="/subscription"
               className="text-nav text-ui-neutral hover:text-body-inverted uppercase"
             >
               Create Your Plan

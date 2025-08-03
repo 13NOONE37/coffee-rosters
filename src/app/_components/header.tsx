@@ -16,6 +16,7 @@ export function Header() {
 
   return (
     <header className="flex justify-between items-center py-8 md:py:10 lg:py-11">
+      {/* We are defining here also bottom paddings because we need to know exact height for mobile nav; so we can't depend on other components*/}
       <Link href={'/'}>
         <Logo className="w-[162px] h-[17px] md:w-[236px] md:h-[26px]" />
       </Link>
@@ -61,7 +62,7 @@ export function Header() {
           </li>
           <li>
             <Link
-              href="/plan"
+              href="/subscription"
               className="text-nav-menu text-body md:text-ui-neutral hover:text-body uppercase"
             >
               Create Your Plan
