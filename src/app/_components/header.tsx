@@ -45,7 +45,7 @@ export function Header() {
         <ul className="flex flex-col md:flex-row place-items-center gap-8">
           <li>
             <Link
-              href="/home"
+              href="/"
               className="text-nav-menu text-body md:text-ui-neutral hover:text-body uppercase"
             >
               Home
