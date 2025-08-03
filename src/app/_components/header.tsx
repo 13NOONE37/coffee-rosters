@@ -1,4 +1,5 @@
 'use client';
+import { Logo } from '@/assets/logo';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -15,15 +16,8 @@ export function Header() {
 
   return (
     <header className="flex justify-between items-center py-8 md:py:10 lg:py-11">
-      <Link
-        className="w-[162px] h-[17px] md:w-[236px] md:h-[26px] relative"
-        href={'/'}
-      >
-        <Image
-          src={'/assets/shared/desktop/logo.svg'}
-          fill
-          alt="Cofferoasters logo"
-        />
+      <Link href={'/'}>
+        <Logo className="w-[162px] h-[17px] md:w-[236px] md:h-[26px]" />
       </Link>
       <button
         className="block md:hidden w-[16px] h-[15px] relative"
