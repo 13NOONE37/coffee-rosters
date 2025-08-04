@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export function Footer() {
   return (
-    <footer className="bg-surface-card py-13.5 md:py-14.5 lg:py-12 lg:px-21 flex flex-col lg:grid grid-cols-[auto_1fr_auto] items-center max-sm:gap-12">
+    <footer className="bg-surface-card py-13.5 md:py-14.5 lg:py-12 lg:px-21 flex flex-col lg:grid grid-cols-[auto_1fr_auto] items-center max-md:gap-12">
       <Link href={'/'}>
         <Logo
           className="w-[217px] h-[23px] md:w-[236px] md:h-[26px]"
