@@ -3,7 +3,7 @@
 
 @layer components {
   .text-alternate-big {
-    @apply font-fraunces font-black text-[4.5rem] leading-[4.5rem]; /* 72px */
+    @apply font-fraunces font-black text-[2.5rem] leading-[4.5rem]; /*40px  72px */
 
     @media (min-width: theme('screens.md')) {
       @apply text-[6rem] leading-[4.5rem]; /* 96px, 72px */
