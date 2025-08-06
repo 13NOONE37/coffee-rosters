@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { CreateYourPlanButton } from './createYourPlanButton';
 
 export function Hero() {
   return (
@@ -13,12 +14,9 @@ export function Hero() {
         curated artisan coffees from our best roasters delivered directly to
         your door, at your schedule.
       </p>
-      <Link
-        href={'/subscription'}
-        className="flex place-items-center bg-brand-primary hover:bg-brand-primary-light  font-fraunces font-black text-lg text-body-inverted  rounded-[6px] py-4 px-8 mt-10 lg:mt-14 "
-      >
-        Create your plan
-      </Link>
+      <div className="mt-10 lg:mt-14">
+        <CreateYourPlanButton />
+      </div>
     </section>
   );
 }
