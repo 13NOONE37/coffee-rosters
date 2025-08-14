@@ -30,10 +30,11 @@ export function Collection() {
 
   return (
     <section className="mt-30 md:mt-36 lg:mt-34">
-      <div className="bg-ui-neutral bg-linear-180 from-body-inverted/0 to-body-inverted/100 opacity-50 bg-clip-text">
-        <h1 className="text-alternate-big text-transparent text-center">
+      <div className="relative ">
+        <h1 className="text-alternate-big text-ui-neutral text-center text-nowrap md:pt-7 md:pb-5 lg:pt-21.5 lg:pb-9.5">
           our collection
         </h1>
+        <div className="absolute inset-0 bg-linear-180 from-body-inverted/0 to-body-inverted/100"></div>
       </div>
       <ul className="flex flex-col gap-12 mt-3 md:-mt-14.5 lg:-mt-17.5">
         {collection.map((coffee) => (
