@@ -9,9 +9,12 @@ export function Header() {
 
   useEffect(() => {
     if (isMenuOpen) {
-      return document.body.classList.add('prevent-scroll-menu');
+      return document.body.classList.add(
+        'overflow-y-hidden',
+        'md:overflow-y-auto',
+      );
     }
-    document.body.classList.remove('prevent-scroll-menu');
+    document.body.classList.remove('overflow-y-hidden', 'md:overflow-y-auto');
   }, [isMenuOpen]);
 
   return (
@@ -39,7 +42,7 @@ export function Header() {
         )}
       </button>
       <nav
-        className={`bg-surface-page fixed top-[81px] left-0 w-full h-full flex flex-col place-items-center pt-10 ${
+        className={`bg-surface-page absolute top-[81px] left-0 w-full h-full flex flex-col place-items-center pt-10 z-10 ${
           isMenuOpen ? 'not-sr-only' : 'sr-only'
         } md:not-sr-only`}
       >
