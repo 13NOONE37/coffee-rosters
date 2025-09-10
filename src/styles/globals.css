@@ -46,7 +46,7 @@
     @apply font-fraunces font-black text-[1.5rem] leading-[2rem]; /* 24px, 32px */
   }
   .text-content {
-    @apply font-barlow font-medium text-[0.9375rem] leading-[1.5625rem]; /* 15px, 25px */
+    @apply font-barlow font-normal text-[0.9375rem] leading-[1.5625rem]; /* 15px, 25px */
 
     @media (min-width: theme('screens.lg')) {
       @apply text-[1rem] leading-[1.625rem]; /* 16px, 26px */
