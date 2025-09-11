@@ -12,7 +12,7 @@ const fraunces = Fraunces({
 
 const barlow = Barlow({
   variable: '--font-barlowSansSerif',
-  weight: ['500', '700'],
+  weight: ['400', '500', '700'],
   subsets: ['latin'],
 });
 
