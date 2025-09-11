@@ -1,30 +1,16 @@
-export function HowItWorks() {
-  const collection = [
-    {
-      name: 'Gran Espresso',
-      description:
-        'Light and flavorful blend with cocoa and black pepper for an intense experience',
-      imageURL: '/assets/home/desktop/image-gran-espresso.png',
-    },
-    {
-      name: 'Planalto',
-      description:
-        ' Brazilian dark roast with rich and velvety body, and hints of fruits and nuts',
-      imageURL: '/assets/home/desktop/image-planalto.png',
-    },
-    {
-      name: 'Piccollo',
-      description:
-        'Mild and smooth blend featuring notes of toasted almond and dried cherry',
-      imageURL: '/assets/home/desktop/image-piccollo.png',
-    },
-    {
-      name: 'Danche',
-      description:
-        'Ethiopian hand-harvested blend densely packed with vibrant fruit notes',
-      imageURL: '/assets/home/desktop/image-danche.png',
-    },
-  ];
+import { CreateYourPlanButton } from './createYourPlanButton';
+import { PlanInstruction } from './PlanInstruction';
 
-  return <section className="">HowItWorks</section>;
+export function HowItWorks() {
+  return (
+    <section className="mt-179 md:mt-108.5 lg:mt-88 mb-30 md:mb-36 lg:mb-50">
+      <h1 className="text-h4 text-ui-neutral">How it works</h1>
+      <div className="md:mt-10 lg:mt-20">
+        <PlanInstruction />
+      </div>
+      <div className="flex justify-center md:justify-start mt-19.5 md:mt-11 lg:mt-16">
+        <CreateYourPlanButton />
+      </div>
+    </section>
+  );
 }
