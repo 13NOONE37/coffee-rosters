@@ -48,7 +48,7 @@ export function WhyUs() {
           <h1 className="text-h2 text-body-inverted text-nowrap">
             Why choose us?
           </h1>
-          <p className="text-content text-body-inverted/80 text-center max-w-[33.75rem] mt-6 lg:mt-8">
+          <p className="text-content text-body-inverted/80 text-center max-w-135 mt-6 lg:mt-8">
             A large part of our role is choosing which particular coffees will
             be featured in our range. This means working closely with the best
             coffee growers to give you a more impactful experience on every
@@ -84,7 +84,7 @@ function ReasonCard({
         <h3 className="text-h4 text-body-inverted text-center md:text-left lg:text-center">
           {heading}
         </h3>
-        <p className="text-content max-w-[344px]  lg:max-w-[255px] text-body-inverted text-center md:text-left lg:text-center">
+        <p className="text-content max-w-86  lg:max-w-64 text-body-inverted text-center md:text-left lg:text-center">
           {description}
         </p>
       </div>
