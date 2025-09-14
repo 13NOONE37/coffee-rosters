@@ -49,7 +49,7 @@ export function Collection() {
               <h2 className="font-fraunces font-black text-[1.5rem] leading-[2rem] text-body">
                 {coffee.name}
               </h2>
-              <p className="text-content text-body text-center md:text-left xl:text-center max-w-[282px] xl:max-w-[255px] mt-4 md:mt-6">
+              <p className="text-content text-body text-center md:text-left xl:text-center max-w-70.5 xl:max-w-64 mt-4 md:mt-6">
                 {coffee.description}
               </p>
             </div>
