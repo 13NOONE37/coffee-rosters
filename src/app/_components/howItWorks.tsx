@@ -4,7 +4,9 @@ import { PlanInstruction } from './PlanInstruction';
 export function HowItWorks() {
   return (
     <section className="mt-179 md:mt-108.5 lg:mt-88 mb-30 md:mb-36 lg:mb-50">
-      <h1 className="text-h4 text-ui-neutral">How it works</h1>
+      <h1 className="text-h4 text-ui-neutral text-center md:text-left">
+        How it works
+      </h1>
       <div className="md:mt-10 lg:mt-20">
         <PlanInstruction />
       </div>

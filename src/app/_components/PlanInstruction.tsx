@@ -1,17 +1,31 @@
-const instruction = [
+import { JSX } from 'react';
+
+const instructions = [
   {
-    id: 1,
-    heading: 'Pick your coffee',
+    index: 1,
+    Heading: () => (
+      <>
+        Pick your <br className="hidden md:block" /> cofee
+      </>
+    ),
     description: `Select from our evolving range of artisan coffees. Our beans are ethically sourced and we pay fair prices for them. There are new coffees in all profiles every month for you to try out.`,
   },
   {
-    id: 1,
-    heading: 'Choose the frequency',
+    index: 2,
+    Heading: () => (
+      <>
+        Choose the <br className="hidden md:block" /> frequency
+      </>
+    ),
     description: `Customize your order frequency, quantity, even your roast style and grind type. Pause, skip or cancel your subscription with no commitment through our online portal.`,
   },
   {
-    id: 1,
-    heading: 'Receive and enjoy!',
+    index: 3,
+    Heading: () => (
+      <>
+        Receive and <br className="hidden md:block" /> enjoy!
+      </>
+    ),
     description: `We ship your package within 48 hours, freshly roasted. Sit back and enjoy award-winning world-class coffees curated to provide a distinct tasting experience.`,
   },
 ];
@@ -28,14 +42,37 @@ export function PlanInstruction() {
       </div>
 
       <ul className="flex flex-col md:flex-row gap-14 md:gap-2.5 lg:gap-24 mt-28 md:mt-12 lg:mt-17">
-        <li>step1</li>
-        <li>step2</li>
-        <li>step3</li>
+        {instructions.map((item) => (
+          <Step {...item} key={item.index} />
+        ))}
       </ul>
     </div>
   );
 }
-
+function Step({
+  index,
+  Heading,
+  description,
+}: {
+  index: number;
+  Heading: () => JSX.Element;
+  description: string;
+}) {
+  return (
+    <li className="flex flex-col items-center md:items-start">
+      <span className="font-fraunces text-[4.5rem] leading-[4.5rem] text-accent-secondary">
+        {index < 10 && '0'}
+        {index}
+      </span>
+      <h3 className="text-h3 text-body text-center md:text-left mt-6 md:mt-10.5 lg:mt-9.5">
+        <Heading />
+      </h3>
+      <p className="text-content text-body text-center md:text-left max-w-82 md:max-w-full mt-6 md:mt-9.5 lg:mt-10.5">
+        {description}
+      </p>
+    </li>
+  );
+}
 function Circle() {
   return <div className="size-8 rounded-[50%] border-2 border-brand-primary" />;
 }
