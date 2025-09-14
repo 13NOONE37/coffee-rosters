@@ -36,7 +36,7 @@ export function WhyUs() {
         >
           <div className="w-[1530px] h-[1021px]  absolute left-[50%] lg:left-[0] translate-x-[-50%] lg:translate-x-[0%] top-[269px] md:top-[-12px]">
             <Image
-              src={'/assets/plan/desktop/bg-steps-with.png'}
+              src={'/assets/plan/desktop/bg-steps.png'}
               alt=""
               loading={'lazy'}
               priority={false}
