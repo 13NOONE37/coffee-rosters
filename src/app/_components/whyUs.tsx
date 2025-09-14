@@ -28,7 +28,7 @@ const reasons = [
 
 export function WhyUs() {
   return (
-    <section className="mt-30 md:mt-36 lg:mt-50">
+    <section>
       <div className="bg-surface-card  rounded-[10px] flex flex-col items-center px-6 pt-16 pb-165 md:px-18.5 md:pt-14 md:pb-92 lg:pt-25 lg:pb-79.5 relative">
         <div
           aria-hidden="true"
