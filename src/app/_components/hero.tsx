@@ -9,7 +9,7 @@ export function Hero() {
         <br />
         made simple.
       </h1>
-      <p className="max-w-[280px] md:max-w-[398px] lg:max-w-[445px] text-content text-center md:text-left text-body-inverted/80 mt-6 lg:mt-8">
+      <p className="max-w-111 text-content text-center md:text-left text-body-inverted/80 mt-6 lg:mt-8">
         Start your mornings with the world’s best coffees. Try our expertly
         curated artisan coffees from our best roasters delivered directly to
         your door, at your schedule.
