@@ -10,7 +10,7 @@ export default function About() {
       <div className="mt-30 md:mt-36 lg:mt-42">
         <OurCommitment />
       </div>
-      <div className="mt-49.5 md:mt-376 lg:mt-64">
+      <div className="mt-49.5 md:mt-76 xl:mt-64">
         <Quality />
       </div>
       <div className="mt-30 md:mt-36 lg:mt-38">

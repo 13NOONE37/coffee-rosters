@@ -9,6 +9,7 @@ export function OurCommitment() {
           alt="Barist making a coffee"
           width={485}
           height={506}
+          quality={100}
           loading="lazy"
         />
       </div>
