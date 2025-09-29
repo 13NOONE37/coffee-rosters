@@ -13,7 +13,7 @@ export default function About() {
       <div className="mt-49.5 md:mt-76 xl:mt-64">
         <Quality />
       </div>
-      <div className="mt-30 md:mt-36 lg:mt-38">
+      <div className="my-30 md:my-36 lg:mt-38 lg:mb-46">
         <HeadQuarters />
       </div>
     </div>
