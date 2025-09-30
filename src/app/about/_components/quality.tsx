@@ -30,13 +30,14 @@ export function Quality() {
         aria-hidden="true"
         className="absolute inset-0 rounded-[10px] overflow-hidden pointer-events-none"
       >
-        <div className="w-[1530px] h-[1021px]  absolute left-[50%] lg:left-[0] translate-x-[-50%] lg:translate-x-[0%] top-[269px] md:top-[-12px]">
+        <div className="w-[1530px] h-[1021px]  absolute left-[50%] lg:left-[0] translate-x-[-50%] lg:translate-x-[0%] md:top-[-12px]">
           <Image
             src={'/assets/plan/desktop/bg-steps.png'}
             alt=""
             loading={'lazy'}
             priority={false}
             fill
+            quality={100}
           />
         </div>
       </div>
@@ -47,10 +48,10 @@ export function Quality() {
           <img {...mobile.props} className="w-full h-full object-cover" />
         </picture>
       </div>
-      <h1 className="text-h2 text-body-inverted text-center md:text-left">
+      <h1 className="text-h2 text-body-inverted text-center md:text-left z-1">
         Uncompromising quality
       </h1>
-      <p className="max-w-111 text-content text-center xl:text-left text-body-inverted/80 mt-6 xl:mt-8">
+      <p className="max-w-111 text-content text-center xl:text-left text-body-inverted/80 mt-6 xl:mt-8 z-1">
         Although we work with growers who pay close attention to all stages of
         harvest and processing, we employ, on our end, a rigorous quality
         control program to avoid over-roasting or baking the coffee dry. Every

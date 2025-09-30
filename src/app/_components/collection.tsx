@@ -43,7 +43,12 @@ export function Collection() {
             className="flex flex-col md:flex-row xl:flex-col align-items-center place-items-center md:place-items-start xl:place-items-center gap-6 md:gap-9 xl:gap-18"
           >
             <div className="w-[200px] aspect-[454/356] md:w-[255px] xl:w-[235px] relative">
-              <Image src={coffee.imageURL} alt={coffee.name} fill />
+              <Image
+                src={coffee.imageURL}
+                alt={coffee.name}
+                fill
+                quality={100}
+              />
             </div>
             <div className="flex flex-col place-items-center md:place-items-start xl:place-items-center">
               <h2 className="font-fraunces font-black text-[1.5rem] leading-[2rem] text-body">

@@ -40,6 +40,7 @@ export function WhyUs() {
               alt=""
               loading={'lazy'}
               priority={false}
+              quality={100}
               fill
             />
           </div>

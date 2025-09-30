@@ -73,8 +73,10 @@ function Step({
       </span>
       <h3
         className={cn(
-          'text-h3 text-center md:text-left mt-6 md:mt-10.5 lg:mt-9.5',
-          variant === 'dark' ? 'text-body-inverted' : 'text-body',
+          'text-center md:text-left mt-6 md:mt-10.5 lg:mt-9.5',
+          variant === 'dark'
+            ? 'text-h3 text-body-inverted'
+            : 'text-h3 text-body',
         )}
       >
         <Heading />

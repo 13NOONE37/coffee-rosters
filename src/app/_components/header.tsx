@@ -17,6 +17,7 @@ export function Header() {
     document.body.classList.remove('overflow-y-hidden', 'md:overflow-y-auto');
   }, [isMenuOpen]);
 
+  //TODO: move icons(close and hamburger) to assets folder as tsx files
   return (
     <header className="flex justify-between items-center py-8 md:py:10 lg:py-11">
       {/* We are defining here also bottom paddings because we need to know exact height for mobile nav; so we can't depend on other components*/}
