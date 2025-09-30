@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils';
 import { JSX } from 'react';
 
 const instructions = [
@@ -30,7 +31,11 @@ const instructions = [
   },
 ];
 
-export function PlanInstruction() {
+export function PlanInstruction({
+  variant = 'light',
+}: {
+  variant?: 'light' | 'dark';
+}) {
   return (
     <div>
       <div className="sr-only md:not-sr-only max-w-[75%] grid grid-cols-[auto_1fr_auto_1fr_auto]">
@@ -43,7 +48,7 @@ export function PlanInstruction() {
 
       <ul className="flex flex-col md:flex-row gap-14 md:gap-2.5 lg:gap-24 mt-28 md:mt-12 lg:mt-17">
         {instructions.map((item) => (
-          <Step {...item} key={item.index} />
+          <Step {...item} key={item.index} variant={variant} />
         ))}
       </ul>
     </div>
@@ -53,10 +58,12 @@ function Step({
   index,
   Heading,
   description,
+  variant,
 }: {
   index: number;
   Heading: () => JSX.Element;
   description: string;
+  variant: 'light' | 'dark';
 }) {
   return (
     <li className="flex flex-col items-center md:items-start">
@@ -64,10 +71,20 @@ function Step({
         {index < 10 && '0'}
         {index}
       </span>
-      <h3 className="text-h3 text-body text-center md:text-left mt-6 md:mt-10.5 lg:mt-9.5">
+      <h3
+        className={cn(
+          'text-h3 text-center md:text-left mt-6 md:mt-10.5 lg:mt-9.5',
+          variant === 'dark' ? 'text-body-inverted' : 'text-body',
+        )}
+      >
         <Heading />
       </h3>
-      <p className="text-content text-body text-center md:text-left max-w-82 md:max-w-full mt-6 md:mt-9.5 lg:mt-10.5">
+      <p
+        className={cn(
+          'text-content text-center md:text-left max-w-82 md:max-w-full mt-6 md:mt-9.5 lg:mt-10.5',
+          variant === 'dark' ? 'text-body-inverted' : 'text-body',
+        )}
+      >
         {description}
       </p>
     </li>
