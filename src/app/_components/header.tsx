@@ -51,7 +51,7 @@ export function Header() {
           <li>
             <Link
               href="/"
-              className="text-nav-menu text-body md:text-ui-neutral hover:text-body uppercase"
+              className="nav-text-menu text-body md:text-ui-neutral hover:text-body uppercase"
             >
               Home
             </Link>
@@ -59,7 +59,7 @@ export function Header() {
           <li>
             <Link
               href="/about"
-              className="text-nav-menu text-body md:text-ui-neutral  hover:text-body uppercase"
+              className="nav-text-menu text-body md:text-ui-neutral  hover:text-body uppercase"
             >
               About Us
             </Link>
@@ -67,7 +67,7 @@ export function Header() {
           <li>
             <Link
               href="/subscription"
-              className="text-nav-menu text-body md:text-ui-neutral hover:text-body uppercase"
+              className="nav-text-menu text-body md:text-ui-neutral hover:text-body uppercase"
             >
               Create Your Plan
             </Link>

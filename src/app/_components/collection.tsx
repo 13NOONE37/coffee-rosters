@@ -31,7 +31,7 @@ export function Collection() {
   return (
     <section className="flex flex-col place-items-center">
       <div className="max-w-full overflow-hidden relative -z-1">
-        <h1 className="text-alternate-big text-ui-neutral text-center text-nowrap md:pt-7 md:pb-5 xl:pt-21.5 xl:pb-9.5">
+        <h1 className="heading-alternate-big text-ui-neutral text-center text-nowrap md:pt-7 md:pb-5 xl:pt-21.5 xl:pb-9.5">
           our collection
         </h1>
         <div className="absolute inset-0 bg-linear-180 from-body-inverted/0 to-body-inverted/100"></div>
@@ -54,7 +54,7 @@ export function Collection() {
               <h2 className="font-fraunces font-black text-[1.5rem] leading-[2rem] text-body">
                 {coffee.name}
               </h2>
-              <p className="text-content text-body text-center md:text-left xl:text-center max-w-70.5 xl:max-w-64 mt-4 md:mt-6">
+              <p className="content-text text-body text-center md:text-left xl:text-center max-w-70.5 xl:max-w-64 mt-4 md:mt-6">
                 {coffee.description}
               </p>
             </div>

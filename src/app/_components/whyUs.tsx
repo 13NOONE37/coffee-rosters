@@ -46,10 +46,10 @@ export function WhyUs() {
           </div>
         </div>
         <div className="max-w-135 flex flex-col items-center z-1">
-          <h1 className="text-h2 text-body-inverted text-nowrap">
+          <h1 className="heading-2 text-body-inverted text-nowrap">
             Why choose us?
           </h1>
-          <p className="text-content text-body-inverted/80 text-center max-w-135 mt-6 lg:mt-8">
+          <p className="content-text text-body-inverted/80 text-center max-w-135 mt-6 lg:mt-8">
             A large part of our role is choosing which particular coffees will
             be featured in our range. This means working closely with the best
             coffee growers to give you a more impactful experience on every
@@ -82,10 +82,10 @@ function ReasonCard({
         {<Icon />}
       </div>
       <div className="flex flex-col gap-6 md:gap-4 lg:gap-6">
-        <h3 className="text-h4 text-body-inverted text-center md:text-left lg:text-center">
+        <h3 className="heading-4 text-body-inverted text-center md:text-left lg:text-center">
           {heading}
         </h3>
-        <p className="text-content max-w-86  lg:max-w-64 text-body-inverted text-center md:text-left lg:text-center">
+        <p className="content-text max-w-86  lg:max-w-64 text-body-inverted text-center md:text-left lg:text-center">
           {description}
         </p>
       </div>

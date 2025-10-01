@@ -2,8 +2,9 @@ import { PlanInstruction } from '@/app/_components/PlanInstruction';
 import Image from 'next/image';
 
 export function SubscriptionPlan() {
+  //TODO fix the heading font(we have to change name from heading-3 to heading-h3 across project)
   return (
-    <div className="px-6 md:px-10 lg:px-21 py-20 md:pt-24 md:pb-17.5 lg:py-25">
+    <section className="px-6 md:px-10 lg:px-21 py-20 md:pt-24 md:pb-17.5 lg:py-25">
       <div
         aria-hidden="true"
         className="absolute inset-0 rounded-[10px] overflow-hidden pointer-events-none"
@@ -22,6 +23,6 @@ export function SubscriptionPlan() {
       <div className="relative z-1">
         <PlanInstruction variant={'dark'} />
       </div>
-    </div>
+    </section>
   );
 }

@@ -14,10 +14,10 @@ export function OurCommitment() {
         />
       </div>
       <div className="mt-12 md:mt-2 xl:mt-22.5">
-        <h1 className="text-h2 text-body text-center md:text-left">
+        <h1 className="heading-2 text-body text-center md:text-left">
           Our commitment
         </h1>
-        <p className="max-w-111 text-content text-center md:text-left text-body/80 mt-7.5">
+        <p className="max-w-111 content-text text-center md:text-left text-body/80 mt-7.5">
           We’re built on a simple mission and a commitment to doing good along
           the way. We want to make it easy for you to discover and brew the
           world’s best coffee at home. It all starts at the source. To locate

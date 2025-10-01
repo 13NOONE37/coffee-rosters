@@ -1,4 +1,5 @@
 import { CreatePlan } from './_components/createPlan';
+import { Selection } from './_components/selection';
 import { SubscriptionPlan } from './_components/subscriptionPlan';
 
 export default function Subscription() {
@@ -10,7 +11,9 @@ export default function Subscription() {
       <div className="relative bg-surface-card rounded-[10px] lg:rounded-[0px] -mx-6 md:-mx-9.5 lg:mx-0 mt-30 md:mt-36 lg:mt-42">
         <SubscriptionPlan />
       </div>
-      <div className="mt-30 md:mt-36 lg:mt-42">a</div>
+      <div className="my-30 md:my-36 lg:my-42">
+        <Selection />
+      </div>
     </div>
   );
 }

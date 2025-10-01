@@ -73,17 +73,15 @@ function Step({
       </span>
       <h3
         className={cn(
-          'text-center md:text-left mt-6 md:mt-10.5 lg:mt-9.5',
-          variant === 'dark'
-            ? 'text-h3 text-body-inverted'
-            : 'text-h3 text-body',
+          'heading-3 text-center md:text-left mt-6 md:mt-10.5 lg:mt-9.5',
+          variant === 'dark' ? 'text-body-inverted' : 'text-body',
         )}
       >
         <Heading />
       </h3>
       <p
         className={cn(
-          'text-content text-center md:text-left max-w-82 md:max-w-full mt-6 md:mt-9.5 lg:mt-10.5',
+          'content-text text-center md:text-left max-w-82 md:max-w-full mt-6 md:mt-9.5 lg:mt-10.5',
           variant === 'dark' ? 'text-body-inverted' : 'text-body',
         )}
       >

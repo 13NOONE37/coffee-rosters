@@ -19,7 +19,7 @@ export function Footer() {
           <li>
             <Link
               href="/"
-              className="text-nav text-ui-neutral hover:text-body-inverted uppercase"
+              className="nav-text text-ui-neutral hover:text-body-inverted uppercase"
             >
               Home
             </Link>
@@ -27,7 +27,7 @@ export function Footer() {
           <li>
             <Link
               href="/about"
-              className="text-nav text-ui-neutral  hover:text-body-inverted uppercase"
+              className="nav-text text-ui-neutral  hover:text-body-inverted uppercase"
             >
               About Us
             </Link>
@@ -35,7 +35,7 @@ export function Footer() {
           <li>
             <Link
               href="/subscription"
-              className="text-nav text-ui-neutral hover:text-body-inverted uppercase"
+              className="nav-text text-ui-neutral hover:text-body-inverted uppercase"
             >
               Create Your Plan
             </Link>

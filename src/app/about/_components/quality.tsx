@@ -48,10 +48,10 @@ export function Quality() {
           <img {...mobile.props} className="w-full h-full object-cover" />
         </picture>
       </div>
-      <h1 className="text-h2 text-body-inverted text-center md:text-left z-1">
+      <h1 className="heading-2 text-body-inverted text-center md:text-left z-1">
         Uncompromising quality
       </h1>
-      <p className="max-w-111 text-content text-center xl:text-left text-body-inverted/80 mt-6 xl:mt-8 z-1">
+      <p className="max-w-111 content-text text-center xl:text-left text-body-inverted/80 mt-6 xl:mt-8 z-1">
         Although we work with growers who pay close attention to all stages of
         harvest and processing, we employ, on our end, a rigorous quality
         control program to avoid over-roasting or baking the coffee dry. Every
