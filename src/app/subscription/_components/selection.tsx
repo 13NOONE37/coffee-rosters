@@ -1,6 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/utils';
+import { Dispatch, SetStateAction, useReducer, useState } from 'react';
 
 export enum STEPS {
   PREFERENCES = 'preferences',
@@ -9,24 +10,21 @@ export enum STEPS {
   GRIND_OPTION = 'grind_option',
   DELIVERIES = 'deliveries',
 }
-
+type Answer = string | number;
 type Step = {
   key: STEPS;
-  index: number;
   name: string;
   question: string;
   answers: {
     title: string;
     description: string;
-    value: string | number;
+    value: Answer;
   }[];
-  dependsOn?: { step: 1; value: string | number[] };
+  dependsOn?: { step: 1; value: Answer[] };
 };
-
 const steps: Step[] = [
   {
     key: STEPS.PREFERENCES,
-    index: 1,
     name: 'Preferences',
     question: 'How do you drink your coffee?',
     answers: [
@@ -51,7 +49,6 @@ const steps: Step[] = [
   },
   {
     key: STEPS.BEAN_TYPE,
-    index: 2,
     name: 'Bean Type',
     question: 'What type of coffee?',
     answers: [
@@ -77,7 +74,6 @@ const steps: Step[] = [
   },
   {
     key: STEPS.QUANTITY,
-    index: 3,
     name: 'Quantity',
     question: 'How much would you like?',
     answers: [
@@ -103,7 +99,6 @@ const steps: Step[] = [
   },
   {
     key: STEPS.GRIND_OPTION,
-    index: 4,
     name: 'Grind Option',
     question: 'Want us to grind them?',
     answers: [
@@ -129,7 +124,6 @@ const steps: Step[] = [
   },
   {
     key: STEPS.DELIVERIES,
-    index: 5,
     name: 'Deliveries',
     question: 'How often should we deliver?',
     answers: [
@@ -151,28 +145,112 @@ const steps: Step[] = [
     ],
   },
 ];
+
+type State = Record<STEPS, string | null>;
+
+type Action = {
+  type: 'ANSWER';
+  step: STEPS;
+  value: Answer;
+};
+
 export function Selection() {
+  const [currentStep, setCurrentStep] = useState<STEPS>(STEPS.PREFERENCES);
+
+  function reducer(state: State, action: Action): State {
+    switch (action.type) {
+      case 'ANSWER': {
+        const newState = { ...state, [action.step]: action.value };
+
+        // Example rule: if Preferences = Capsule, Grind Option is irrelevant → reset it
+        if (action.step === STEPS.PREFERENCES && action.value === 'capsule') {
+          newState[STEPS.GRIND_OPTION] = null;
+        }
+
+        return newState;
+      }
+      default:
+        return state;
+    }
+  }
+  const [answers, dispatch] = useReducer(reducer, {
+    [STEPS.PREFERENCES]: null,
+    [STEPS.BEAN_TYPE]: null,
+    [STEPS.QUANTITY]: null,
+    [STEPS.GRIND_OPTION]: null,
+    [STEPS.DELIVERIES]: null,
+  });
+
   return (
     <section className="grid lg:grid-cols-[auto_1fr] gap-31 lg:px-21">
       <div className="sr-only lg:not-sr-only">
-        <Progress />
+        <Progress step={currentStep} setStep={setCurrentStep} />
       </div>
-      <div>a</div>
+      <ul className="flex flex-col gap-27.5 md:gap-25 lg:gap-22">
+        {steps.map(({ key, question, answers, dependsOn }) => (
+          <li key={key}>
+            <div className="flex justify-between">
+              <h3 className="text-[1.5rem] md:text-[2rem] lg:text-[2.5rem] heading-2  text-ui-neutral">
+                {question}
+              </h3>
+              <button>💨</button>
+            </div>
+            <div className="grid lg:grid-cols-[1fr_1fr_1fr] gap-4 md:gap-2.5 lg:gap-6 mt-8 md:mt-10 lg:mt-14">
+              {answers.map((answer) => (
+                <button
+                  onClick={() =>
+                    dispatch({ step: key, type: 'ANSWER', value: answer.value })
+                  }
+                  key={answer.title}
+                  className="bg-[#F4F1EB] rounded-[8px] p-6 md:py-8 md:px-6 lg:py-8 lg:px-7"
+                >
+                  <h4 className="heading-4 text-body text-left">
+                    {answer.title}
+                  </h4>
+                  <p className="content-text text-body mt-2 md:mt-6 text-left">
+                    {answer.description}
+                  </p>
+                </button>
+              ))}
+            </div>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }
 
-function Progress() {
+function isStepDisabled() {}
+function Progress({
+  step,
+  setStep,
+}: {
+  step: STEPS;
+  setStep: Dispatch<SetStateAction<STEPS>>;
+}) {
   return (
     <ul className="divide-y divide-ui-neutral/25">
-      {steps.map(({ name, index, key }) => {
+      {steps.map(({ name, key }, index) => {
         return (
-          <li key={key} className={cn('heading-4 py-6 opacity-40')}>
-            <span className="text-ui-neutral">
-              {index < 10 && '0'}
-              {index}
-            </span>{' '}
-            <span className="text-body ml-6">{name}</span>
+          <li key={key}>
+            <button
+              onClick={() => setStep(key)}
+              className={cn(
+                'heading-4 flex py-6 opacity-40 hover:opacity-60 size-full bg-transparent border-none cursor-pointer',
+                step === key && '!opacity-100',
+              )}
+            >
+              <span
+                className={cn(
+                  'text-ui-neutral',
+                  index === 0 && 'text-brand-primary',
+                )}
+              >
+                {index < 10 && '0'}
+                {index}
+              </span>{' '}
+              <span className="text-body ml-6">{name}</span>
+            </button>
           </li>
         );
       })}
