@@ -19,6 +19,7 @@ export enum STEPS {
   GRIND_OPTION = "grind_option",
   DELIVERIES = "deliveries",
 }
+
 type Answer = string | number | null;
 type Step = {
   key: STEPS;
@@ -29,7 +30,7 @@ type Step = {
     description: string;
     value: Answer;
   }[];
-  dependsOn?: { step: STEPS; value: Answer[] };
+  dependsOn?: { key: STEPS; values: Answer[] };
 };
 const steps: Step[] = [
   {
@@ -129,7 +130,7 @@ const steps: Step[] = [
         value: "cafetiere",
       },
     ],
-    dependsOn: { step: STEPS.PREFERENCES, value: ["filter, espresso"] }, // only show if user chose Filter or Espresso
+    dependsOn: { key: STEPS.PREFERENCES, values: ["filter, espresso"] }, // only show if user chose Filter or Espresso
   },
   {
     key: STEPS.DELIVERIES,
@@ -155,8 +156,12 @@ const steps: Step[] = [
   },
 ];
 
-type AnswersState = Record<STEPS, { value: Answer; isOpen: boolean }>;
-
+type AnswersState = {
+  [K in STEPS]: {
+    value: Answer;
+    isOpen: boolean;
+  };
+};
 type ActionAnswer = {
   type: "ANSWER";
   step: STEPS;
@@ -208,7 +213,7 @@ export function Selection() {
     [STEPS.GRIND_OPTION]: { value: null, isOpen: false },
     [STEPS.DELIVERIES]: { value: null, isOpen: false },
   });
-
+  console.log("HELLO:", answers[STEPS.PREFERENCES].value);
   //todo summary
   //todo checkout
 
@@ -246,7 +251,7 @@ export function Selection() {
             <div
               className={cn(
                 "flex justify-between gap-17",
-                isStepDisabled(step.key, answers) && "opacity-50",
+                // isStepDisabled(step, answers) && "opacity-50",
               )}
             >
               <h3 className="heading-2 text-ui-neutral text-[1.5rem] md:text-[2rem] lg:text-[2.5rem]">
@@ -260,7 +265,7 @@ export function Selection() {
                     value: !answers[step.key].isOpen,
                   })
                 }
-                disabled={isStepDisabled(step, answers)}
+                // disabled={isStepDisabled(step, answers)}
                 className="cursor-pointer"
               >
                 <ArrowIcon
@@ -277,16 +282,19 @@ export function Selection() {
                 answers[step.key].isOpen ? "visible h-auto" : "hidden h-0",
               )}
             >
-              {!isStepDisabled(step, answers) &&
-                step.answers.map((answer) => (
-                  <AnswerComponent
-                    key={answer.title}
-                    passKey={step.key}
-                    dispatch={dispatch}
-                    answers={answers}
-                    {...answer}
-                  />
-                ))}
+              {
+                // !isStepDisabled(step, answers)
+                true &&
+                  step.answers.map((answer) => (
+                    <AnswerComponent
+                      key={answer.title}
+                      passKey={step.key}
+                      dispatch={dispatch}
+                      answers={answers}
+                      {...answer}
+                    />
+                  ))
+              }
             </div>
           </li>
         ))}
@@ -355,9 +363,9 @@ function Progress({
               className={cn(
                 "heading-4 flex size-full cursor-pointer border-none bg-transparent py-6 opacity-40 hover:opacity-60",
                 currentStep === step.key && "!opacity-100",
-                isStepDisabled(step, answers) && "!opacity-20",
+                // isStepDisabled(step, answers) && "!opacity-20",
               )}
-              disabled={isStepDisabled(step, answers)}
+              // disabled={isStepDisabled(step, answers)}
             >
               <span
                 className={cn(
@@ -365,6 +373,7 @@ function Progress({
                   index === 0 && "text-brand-primary",
                 )}
               >
+                {isStepDisabled(step, answers) ? "disabled" : "not disabled"}
                 {String(index + 1).padStart(2, "0")}
               </span>
               <span className="text-body ml-6">{step.name}</span>
@@ -376,12 +385,12 @@ function Progress({
   );
 }
 function isStepDisabled(step: Step, answers: AnswersState): boolean {
-  console.log(step, answers);
   if (!step.dependsOn) return false;
 
-  const { step: dependsOnStep, value: requiredValues } = step.dependsOn;
+  console.log(step.dependsOn, answers[step.key].value);
+  const { key: dependsOnStep, values: dependsOnValues } = step.dependsOn;
   const answer = answers[dependsOnStep]?.value;
 
   // Disable if the dependency condition isn't met
-  return !requiredValues.includes(answer);
+  return dependsOnValues.includes(answer);
 }
