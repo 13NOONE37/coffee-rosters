@@ -30,7 +30,7 @@ type Step = {
     description: string;
     value: Answer;
   }[];
-  dependsOn?: { key: STEPS; values: Answer[] };
+  dependsOn?: { step: STEPS; condition: (answers: AnswersState) => boolean };
 };
 const steps: Step[] = [
   {
@@ -130,7 +130,12 @@ const steps: Step[] = [
         value: "cafetiere",
       },
     ],
-    dependsOn: { key: STEPS.PREFERENCES, values: ["filter, espresso"] }, // only show if user chose Filter or Espresso
+    dependsOn: {
+      step: STEPS.PREFERENCES,
+      condition: (answers) =>
+        answers[STEPS.PREFERENCES].value === "filter" ||
+        answers[STEPS.PREFERENCES].value === "espresso",
+    }, // only show if user choose Filter or Espresso
   },
   {
     key: STEPS.DELIVERIES,
@@ -175,7 +180,7 @@ type ActionOpen = {
 type Action = ActionAnswer | ActionOpen;
 
 export function Selection() {
-  const [currentStep, setCurrentStep] = useState<STEPS>(STEPS.PREFERENCES);
+  const [currentStep, setCurrentStep] = useState<STEPS | null>(null);
 
   function reducer(state: AnswersState, action: Action): AnswersState {
     switch (action.type) {
@@ -185,8 +190,11 @@ export function Selection() {
 
         // Example rule: if Preferences = Capsule, Grind Option is irrelevant → reset it
         if (action.step === STEPS.PREFERENCES) {
-          if (action.value === "capsule")
+          if (action.value === "capsule") {
+            // if (currentStep === STEPS.GRIND_OPTION) setCurrentStep(null);
+
             newState[STEPS.GRIND_OPTION] = { value: null, isOpen: false };
+          }
         }
 
         return newState;
@@ -213,7 +221,6 @@ export function Selection() {
     [STEPS.GRIND_OPTION]: { value: null, isOpen: false },
     [STEPS.DELIVERIES]: { value: null, isOpen: false },
   });
-  console.log("HELLO:", answers[STEPS.PREFERENCES].value);
   //todo summary
   //todo checkout
 
@@ -224,6 +231,8 @@ export function Selection() {
       isInitialMount.current = false;
       return;
     }
+    if (!currentStep) return;
+
     dispatch({ type: "OPEN", step: currentStep, value: true });
 
     setTimeout(() => {
@@ -251,7 +260,9 @@ export function Selection() {
             <div
               className={cn(
                 "flex justify-between gap-17",
-                // isStepDisabled(step, answers) && "opacity-50",
+                step.dependsOn &&
+                  step.dependsOn.condition(answers) === false &&
+                  "opacity-50",
               )}
             >
               <h3 className="heading-2 text-ui-neutral text-[1.5rem] md:text-[2rem] lg:text-[2.5rem]">
@@ -265,7 +276,7 @@ export function Selection() {
                     value: !answers[step.key].isOpen,
                   })
                 }
-                // disabled={isStepDisabled(step, answers)}
+                disabled={step.dependsOn?.condition(answers) === false}
                 className="cursor-pointer"
               >
                 <ArrowIcon
@@ -282,19 +293,16 @@ export function Selection() {
                 answers[step.key].isOpen ? "visible h-auto" : "hidden h-0",
               )}
             >
-              {
-                // !isStepDisabled(step, answers)
-                true &&
-                  step.answers.map((answer) => (
-                    <AnswerComponent
-                      key={answer.title}
-                      passKey={step.key}
-                      dispatch={dispatch}
-                      answers={answers}
-                      {...answer}
-                    />
-                  ))
-              }
+              {!step.dependsOn?.condition(answers) === false &&
+                step.answers.map((answer) => (
+                  <AnswerComponent
+                    key={answer.title}
+                    passKey={step.key}
+                    dispatch={dispatch}
+                    answers={answers}
+                    {...answer}
+                  />
+                ))}
             </div>
           </li>
         ))}
@@ -348,8 +356,8 @@ function Progress({
   setStep,
   answers,
 }: {
-  currentStep: STEPS;
-  setStep: Dispatch<SetStateAction<STEPS>>;
+  currentStep: STEPS | null;
+  setStep: Dispatch<SetStateAction<STEPS | null>>;
   answers: AnswersState;
 }) {
   return (
@@ -363,9 +371,9 @@ function Progress({
               className={cn(
                 "heading-4 flex size-full cursor-pointer border-none bg-transparent py-6 opacity-40 hover:opacity-60",
                 currentStep === step.key && "!opacity-100",
-                // isStepDisabled(step, answers) && "!opacity-20",
+                step.dependsOn?.condition(answers) === false && "!opacity-20",
               )}
-              // disabled={isStepDisabled(step, answers)}
+              disabled={step.dependsOn?.condition(answers) === false}
             >
               <span
                 className={cn(
@@ -373,7 +381,6 @@ function Progress({
                   index === 0 && "text-brand-primary",
                 )}
               >
-                {isStepDisabled(step, answers) ? "disabled" : "not disabled"}
                 {String(index + 1).padStart(2, "0")}
               </span>
               <span className="text-body ml-6">{step.name}</span>
@@ -383,14 +390,4 @@ function Progress({
       })}
     </ul>
   );
-}
-function isStepDisabled(step: Step, answers: AnswersState): boolean {
-  if (!step.dependsOn) return false;
-
-  console.log(step.dependsOn, answers[step.key].value);
-  const { key: dependsOnStep, values: dependsOnValues } = step.dependsOn;
-  const answer = answers[dependsOnStep]?.value;
-
-  // Disable if the dependency condition isn't met
-  return dependsOnValues.includes(answer);
 }
