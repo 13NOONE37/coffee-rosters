@@ -1,5 +1,5 @@
 import { CreatePlan } from './_components/createPlan';
-import { Selection } from './_components/selection';
+import { Selection } from './_components/_selection/selection';
 import { SubscriptionPlan } from './_components/subscriptionPlan';
 
 export default function Subscription() {
