@@ -1,9 +1,9 @@
 export enum STEPS {
-  PREFERENCES = "preferences",
-  BEAN_TYPE = "bean_type",
-  QUANTITY = "quantity",
-  GRIND_OPTION = "grind_option",
-  DELIVERIES = "deliveries",
+  PREFERENCES = 'preferences',
+  BEAN_TYPE = 'bean_type',
+  QUANTITY = 'quantity',
+  GRIND_OPTION = 'grind_option',
+  DELIVERIES = 'deliveries',
 }
 
 export type Answer = string | number | null;
@@ -27,17 +27,16 @@ export type AnswersState = {
   };
 };
 
-
 /**
     Action Type
  */
 type ActionAnswer = {
-  type: "ANSWER";
+  type: 'ANSWER';
   step: STEPS;
   value: Answer;
 };
 type ActionOpen = {
-  type: "OPEN";
+  type: 'OPEN';
   step: STEPS;
   value: boolean;
 };
