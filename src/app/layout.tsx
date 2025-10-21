@@ -27,11 +27,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <body
         className={`${fraunces.variable} ${barlow.variable} bg-surface-page antialiased`}
       >
-        <div className="px-6 md:px-9.5 lg:px-20  max-w-[1440px] mx-auto">
+        <div id='modalContainer'></div>
+        <div className='px-6 md:px-9.5 lg:px-20  max-w-[1440px] mx-auto'>
           <Header />
           <main>{children}</main>
           <Footer />

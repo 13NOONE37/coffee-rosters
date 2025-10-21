@@ -17,6 +17,7 @@ import { AnswerComponent } from './answerComponent';
 import { Progress } from './progress';
 import { initialAnswers, reducer } from './reducer';
 import Image from 'next/image';
+import { Modal } from '@/components/modal';
 
 export function Selection() {
   const [currentStep, setCurrentStep] = useState<STEPS | null>(
@@ -65,8 +66,26 @@ export function Selection() {
     }
   };
 
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   return (
     <section className='grid gap-x-31 xl:grid-cols-[auto_1fr] grid-rows-[1fr_auto_auto] lg:px-21'>
+      <Modal isOpen={isCheckoutOpen} setIsOpen={setIsCheckoutOpen}>
+        <div className='w-135 max-w-[calc(100vw-48px)] bg-surface-page rounded-[8px] overflow-hidden pb-6 md:pb-14'>
+          <div className='bg-[url("/assets/plan/desktop/bg-modal-top.png")] bg-cover px-6 py-7 md:px-14 md:pt-12 md:pb-10 '>
+            <h1 className='heading-2 md:font-[2.5rem] text-white'>
+              Order Summary
+            </h1>
+          </div>
+          <div className='px-6 md:px-14 mt-10 md:mt-14'>
+            <OrderSummary answers={answers} darkVariant={false} />
+            <p className='content-text text-body md:mt-2'>
+              Is this correct? You can proceed to checkout or go back to plan
+              selection if something is off. Subscription discount codes can
+              also be redeemed at the checkout.
+            </p>
+          </div>
+        </div>
+      </Modal>
       <div className='sticky top-12 hidden self-start xl:block'>
         <Progress
           currentStep={currentStep}
@@ -154,7 +173,9 @@ export function Selection() {
         <OrderSummary answers={answers} />
       </div>
       <button
-        onClick={() => {}}
+        onClick={() => {
+          setIsCheckoutOpen(true);
+        }}
         disabled={!isFormComplete(answers)}
         className={cn(
           'xl:col-start-2 xl:row-start-3 flex place-items-center place-self-center xl:place-self-end font-fraunces font-black text-lg text-center text-body-inverted  rounded-[6px] py-4 px-8 mt-14 md:mt-10',
@@ -179,7 +200,13 @@ function isFormComplete(answers: AnswersState): boolean {
   });
 }
 
-function OrderSummary({ answers }: { answers: AnswersState }) {
+function OrderSummary({
+  answers,
+  darkVariant = true,
+}: {
+  answers: AnswersState;
+  darkVariant?: boolean;
+}) {
   const summaryParts = useMemo(() => {
     const preposition =
       answers.preferences.value === 'capsule' ? 'using' : 'as';
@@ -240,7 +267,12 @@ function OrderSummary({ answers }: { answers: AnswersState }) {
   }, [answers]);
 
   return (
-    <p className='heading-4 leading-10 text-white mt-2 relative z-1'>
+    <p
+      className={cn(
+        'heading-4 leading-10 text-white mt-2 relative z-1',
+        darkVariant ? 'text-white' : 'text-ui-neutral',
+      )}
+    >
       “
       {summaryParts.map((part, i) =>
         part.highlight ? (
