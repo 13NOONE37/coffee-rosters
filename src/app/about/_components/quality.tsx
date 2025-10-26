@@ -1,3 +1,4 @@
+import { Noise } from '@/components/noise';
 import Image, { getImageProps } from 'next/image';
 
 export function Quality() {
@@ -25,33 +26,19 @@ export function Quality() {
   });
 
   return (
-    <section className="relative bg-surface-card rounded-[10px] flex flex-col items-center xl:items-start  pt-35.5 md:pt-56 xl:pt-22 pb-15 md:pb-17 xl:pb-44 px-6 md:px-18.5 xl:pl-21">
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 rounded-[10px] overflow-hidden pointer-events-none"
-      >
-        <div className="w-[1530px] h-[1021px]  absolute left-[50%] lg:left-[0] translate-x-[-50%] lg:translate-x-[0%] md:top-[-12px]">
-          <Image
-            src={'/assets/plan/desktop/bg-steps.png'}
-            alt=""
-            loading={'lazy'}
-            priority={false}
-            fill
-            quality={100}
-          />
-        </div>
-      </div>
-      <div className="absolute inset-0">
-        <picture className="w-[279px] md:w-[573px] xl:w-[445px] rounded-[8px] overflow-hidden absolute left-1/2 xl:left-auto xl:right-[85px] xl:top-[-85px] -translate-x-1/2 -translate-y-1/2 xl:translate-0">
-          <source media="(min-width: 1280px)" srcSet={desktop.props.srcSet} />
-          <source media="(min-width: 768px)" srcSet={tablet.props.srcSet} />
-          <img {...mobile.props} className="w-full h-full object-cover" />
+    <section className='relative bg-surface-card rounded-[10px] flex flex-col items-center xl:items-start  pt-35.5 md:pt-56 xl:pt-22 pb-15 md:pb-17 xl:pb-44 px-6 md:px-18.5 xl:pl-21'>
+      <Noise positionClassName='left-[50%] lg:left-[0] translate-x-[-50%] lg:translate-x-[0%] md:top-[-12px]' />
+      <div className='absolute inset-0'>
+        <picture className='w-[279px] md:w-[573px] xl:w-[445px] rounded-[8px] overflow-hidden absolute left-1/2 xl:left-auto xl:right-[85px] xl:top-[-85px] -translate-x-1/2 -translate-y-1/2 xl:translate-0'>
+          <source media='(min-width: 1280px)' srcSet={desktop.props.srcSet} />
+          <source media='(min-width: 768px)' srcSet={tablet.props.srcSet} />
+          <img {...mobile.props} className='w-full h-full object-cover' />
         </picture>
       </div>
-      <h1 className="heading-2 text-body-inverted text-center md:text-left z-1">
+      <h1 className='heading-2 text-body-inverted text-center md:text-left z-1'>
         Uncompromising quality
       </h1>
-      <p className="max-w-111 content-text text-center xl:text-left text-body-inverted/80 mt-6 xl:mt-8 z-1">
+      <p className='max-w-111 content-text text-center xl:text-left text-body-inverted/80 mt-6 xl:mt-8 z-1'>
         Although we work with growers who pay close attention to all stages of
         harvest and processing, we employ, on our end, a rigorous quality
         control program to avoid over-roasting or baking the coffee dry. Every

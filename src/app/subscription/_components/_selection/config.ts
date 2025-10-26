@@ -72,18 +72,33 @@ export const STEPS_CONFIG: Step[] = [
         description:
           'Perfect for the solo drinker. Yields about 12 delicious cups.',
         value: 250,
+        priceInCents: {
+          weekly: 720,
+          every_2_weeks: 960,
+          monthly: 1200,
+        },
       },
       {
         title: '500g',
         description:
           'Perfect option for a couple. Yields about 40 delectable cups.',
         value: 500,
+        priceInCents: {
+          weekly: 1300,
+          every_2_weeks: 1750,
+          monthly: 2200,
+        },
       },
       {
         title: '1000g',
         description:
           'Perfect for offices and events. Yields about 90 delightful cups.',
         value: 1000,
+        priceInCents: {
+          weekly: 2200,
+          every_2_weeks: 3200,
+          monthly: 4200,
+        },
       },
     ],
   },
@@ -125,17 +140,17 @@ export const STEPS_CONFIG: Step[] = [
     answers: [
       {
         title: 'Every week',
-        description: '$7.20 per shipment. Includes free first-class shipping.',
+        description: 'per shipment. Includes free first-class shipping.',
         value: 'weekly',
       },
       {
         title: 'Every 2 weeks',
-        description: '$9.60 per shipment. Includes free priority shipping.',
+        description: 'per shipment. Includes free priority shipping.',
         value: 'every_2_weeks',
       },
       {
         title: 'Every month',
-        description: '$12.00 per shipment. Includes free priority shipping.',
+        description: 'per shipment. Includes free priority shipping.',
         value: 'monthly',
       },
     ],

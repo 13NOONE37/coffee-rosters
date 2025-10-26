@@ -8,17 +8,44 @@ export enum STEPS {
 
 export type Answer = string | number | null;
 
-export type Step = {
-  key: STEPS;
+export type BaseStep = {
   name: string;
   question: string;
+  dependsOn?: { step: STEPS; condition: (answers: AnswersState) => boolean };
+};
+
+export type RegularStep = BaseStep & {
+  key: Exclude<STEPS, STEPS.QUANTITY | STEPS.DELIVERIES>;
   answers: {
     title: string;
     description: string;
     value: Answer;
   }[];
-  dependsOn?: { step: STEPS; condition: (answers: AnswersState) => boolean };
 };
+export type QuantityStep = BaseStep & {
+  key: STEPS.QUANTITY;
+  answers: {
+    title: string;
+    description: string;
+    value: Answer;
+    priceInCents: {
+      weekly: number;
+      every_2_weeks: number;
+      monthly: number;
+    };
+  }[];
+};
+
+export type DeliveryOption = 'weekly' | 'every_2_weeks' | 'monthly';
+export type DeliveryStep = BaseStep & {
+  key: STEPS.DELIVERIES;
+  answers: {
+    title: string;
+    description: string;
+    value: DeliveryOption;
+  }[];
+};
+export type Step = RegularStep | DeliveryStep | QuantityStep;
 
 export type AnswersState = {
   [K in STEPS]: {

@@ -10,14 +10,16 @@ import {
   useRef,
   useState,
 } from 'react';
-import { Answer, AnswersState, Step, STEPS } from './types';
+import { Answer, AnswersState, DeliveryOption, Step, STEPS } from './types';
 import { isStepVisible } from './utils';
 import { SCROLL_CONFIG, SCROLL_DELAY, STEPS_CONFIG } from './config';
-import { AnswerComponent } from './answerComponent';
+import { AnswerComponent, getCurrentPrice } from './answerComponent';
 import { Progress } from './progress';
 import { initialAnswers, reducer } from './reducer';
 import Image from 'next/image';
 import { Modal } from '@/components/modal';
+import { Noise } from '@/components/noise';
+import { formatPrice } from '@/lib/formatters';
 
 export function Selection() {
   const [currentStep, setCurrentStep] = useState<STEPS | null>(
@@ -40,9 +42,6 @@ export function Selection() {
       el?.scrollIntoView(SCROLL_CONFIG);
     }, SCROLL_DELAY);
   }, [currentStep]);
-
-  //TODO checkout
-  //TODO make bg component for this noise because we are redundant but it's same everywhere
 
   const handleAnswer = (step: Step, value: Answer) => {
     // We create a copy to have current version locally
@@ -71,7 +70,8 @@ export function Selection() {
     <section className='grid gap-x-31 xl:grid-cols-[auto_1fr] grid-rows-[1fr_auto_auto] lg:px-21'>
       <Modal isOpen={isCheckoutOpen} setIsOpen={setIsCheckoutOpen}>
         <div className='w-135 max-w-[calc(100vw-48px)] bg-surface-page rounded-[8px] overflow-hidden pb-6 md:pb-14'>
-          <div className='bg-[url("/assets/plan/desktop/bg-modal-top.png")] bg-cover px-6 py-7 md:px-14 md:pt-12 md:pb-10 '>
+          <div className='relative bg-surface-card px-6 py-7 md:px-14 md:pt-12 md:pb-10 '>
+            <Noise />
             <h1 className='heading-2 md:font-[2.5rem] text-white'>
               Order Summary
             </h1>
@@ -84,6 +84,24 @@ export function Selection() {
               also be redeemed at the checkout.
             </p>
           </div>
+          <button
+            className={
+              'bg-brand-primary xl:col-start-2 xl:row-start-3 flex place-items-center place-self-center xl:place-self-end font-fraunces font-black text-lg text-center text-body-inverted  rounded-[6px] py-4 px-8 mt-14 md:mt-10'
+            }
+          >
+            Checkout -{' '}
+            {answers.deliveries.value &&
+              formatPrice(
+                getCurrentPrice(
+                  answers.quantity.value,
+                  answers.deliveries.value as DeliveryOption,
+                ) *
+                  getPriceMultiplier(
+                    answers.deliveries.value as DeliveryOption,
+                  ),
+              )}
+            / mo
+          </button>
         </div>
       </Modal>
       <div className='sticky top-12 hidden self-start xl:block'>
@@ -152,21 +170,7 @@ export function Selection() {
         ))}
       </ul>
       <div className='xl:col-start-2 xl:row-start-2 mt-30 md:mt-36 lg:mt-22  bg-surface-card relative rounded-[10px] py-8 px-6 md:py-7 md:px-11 lg:py-12 lg:px-16'>
-        <div
-          aria-hidden='true'
-          className='absolute inset-0 rounded-[10px] overflow-hidden pointer-events-none'
-        >
-          <div className='w-[1530px] h-[1021px]  absolute left-[50%] lg:left-[0] translate-x-[-50%] lg:translate-x-[0%] top-[269px] md:top-[-12px]'>
-            <Image
-              src={'/assets/plan/desktop/bg-steps.png'}
-              alt=''
-              loading={'lazy'}
-              priority={false}
-              quality={100}
-              fill
-            />
-          </div>
-        </div>
+        <Noise positionClassName='left-[50%] translate-x-[-50%] top-0' />
         <h3 className='content-text uppercase text-white/50 relative z-1'>
           Order summary
         </h3>
@@ -294,4 +298,17 @@ function getTitleFromValue(key: STEPS, value: Answer) {
 }
 function SummaryAnswer({ children }: { children: ReactNode }) {
   return <span className='text-brand-primary'>{children}</span>;
+}
+
+export function getPriceMultiplier(delivery: DeliveryOption) {
+  switch (delivery as DeliveryOption) {
+    case 'weekly':
+      return 4;
+    case 'every_2_weeks':
+      return 2;
+    case 'monthly':
+      return 1;
+    default:
+      return 0;
+  }
 }
