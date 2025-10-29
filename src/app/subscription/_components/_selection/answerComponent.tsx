@@ -17,6 +17,17 @@ export function AnswerComponent({
   value: Answer;
   handleAnswer: (step: STEPS, value: Answer) => void;
 }) {
+  const currentPrice = getCurrentPrice(
+    answers.quantity.value,
+    value as DeliveryOption,
+  );
+  const displayPrice =
+    passKey === STEPS.DELIVERIES
+      ? !isNaN(currentPrice)
+        ? formatPrice(currentPrice) + ' '
+        : '_ '
+      : ' ';
+
   return (
     <label className='h-full cursor-pointer'>
       <input
@@ -31,14 +42,7 @@ export function AnswerComponent({
       <div className='hover:bg-accent-secondary peer-checked:bg-brand-primary! text-body peer-checked:text-body-inverted h-full rounded-[8px] bg-[#F4F1EB] p-6 peer-focus-visible:outline-2 md:px-6 md:py-8 lg:px-7 lg:py-8'>
         <h4 className='heading-4 text-left'>{title}</h4>
         <p className='content-text mt-2 text-left md:mt-6'>
-          {passKey === STEPS.DELIVERIES
-            ? formatPrice(
-                getCurrentPrice(
-                  answers.quantity.value,
-                  value as DeliveryOption,
-                ),
-              ) + ' '
-            : ''}
+          {displayPrice}
           {description}
         </p>
       </div>

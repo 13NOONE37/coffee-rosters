@@ -66,6 +66,18 @@ export function Selection() {
   };
 
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+
+  const currentPrice = getCurrentPrice(
+    answers.quantity.value,
+    answers.deliveries.value as DeliveryOption,
+  );
+  const displayPrice =
+    answers.deliveries.value &&
+    formatPrice(
+      currentPrice *
+        getPriceMultiplier(answers.deliveries.value as DeliveryOption),
+    );
+
   return (
     <section className='grid gap-x-31 xl:grid-cols-[auto_1fr] grid-rows-[1fr_auto_auto] lg:px-21'>
       <Modal isOpen={isCheckoutOpen} setIsOpen={setIsCheckoutOpen}>
@@ -84,24 +96,19 @@ export function Selection() {
               also be redeemed at the checkout.
             </p>
           </div>
-          <button
-            className={
-              'bg-brand-primary xl:col-start-2 xl:row-start-3 flex place-items-center place-self-center xl:place-self-end font-fraunces font-black text-lg text-center text-body-inverted  rounded-[6px] py-4 px-8 mt-14 md:mt-10'
-            }
-          >
-            Checkout -{' '}
-            {answers.deliveries.value &&
-              formatPrice(
-                getCurrentPrice(
-                  answers.quantity.value,
-                  answers.deliveries.value as DeliveryOption,
-                ) *
-                  getPriceMultiplier(
-                    answers.deliveries.value as DeliveryOption,
-                  ),
-              )}
-            / mo
-          </button>
+          <div className='grid md:grid-cols-[auto_1fr] items-center gap-3 px-14 mt-6 md:mt-12'>
+            <span className='sr-only md:not-sr-only heading-3 text-body'>
+              {displayPrice}/ mo
+            </span>
+            <button
+              className={
+                'bg-brand-primary hover:bg-brand-primary-light flex place-content-center font-fraunces font-black text-lg text-center text-body-inverted  rounded-[6px]  py-4 px-8 cursor-pointer'
+              }
+            >
+              <span className='md:sr-only'>Checkout - {displayPrice}/ mo</span>
+              <span className='sr-only md:not-sr-only'>Checkout</span>
+            </button>
+          </div>
         </div>
       </Modal>
       <div className='sticky top-12 hidden self-start xl:block'>
