@@ -4,7 +4,7 @@ import { UkIcon } from '@/assets/uk';
 
 const headquarters = [
   {
-    name: 'United Kindgom',
+    name: 'United Kingdom',
     Icon: UkIcon,
     Content: () => (
       <>
@@ -55,21 +55,21 @@ const headquarters = [
 
 export function HeadQuarters() {
   return (
-    <section className="lg:px-15.5">
-      <h1 className="heading-4 text-ui-neutral text-center md:text-left">
+    <section className='lg:px-15.5'>
+      <h1 className='heading-4 text-ui-neutral text-center md:text-left'>
         Our headquarters
       </h1>
-      <ul className="flex flex-col md:flex-row gap-20 lg:gap-24  mt-18">
+      <ul className='flex flex-col md:flex-row gap-20 lg:gap-24  mt-18'>
         {headquarters.map((hq) => (
           <li
-            className="lg:w-[285px] flex flex-col items-center md:items-start"
+            className='lg:w-[285px] flex flex-col items-center md:items-start'
             key={hq.name}
           >
             <hq.Icon />
-            <h3 className="heading-3 text-body leading-[36px] md:text-[24px] lg:text-[32px] whitespace-nowrap mt-12">
+            <h3 className='heading-3 text-body leading-[36px] md:text-[24px] lg:text-[32px] whitespace-nowrap mt-12'>
               {hq.name}
             </h3>
-            <p className="content-text text-body text-center md:text-left mt-5.5 lg:mt-6">
+            <p className='content-text text-body text-center md:text-left mt-5.5 lg:mt-6'>
               <hq.Content />
             </p>
           </li>

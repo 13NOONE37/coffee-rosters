@@ -16,7 +16,6 @@ import { SCROLL_CONFIG, SCROLL_DELAY, STEPS_CONFIG } from './config';
 import { AnswerComponent, getCurrentPrice } from './answerComponent';
 import { Progress } from './progress';
 import { initialAnswers, reducer } from './reducer';
-import Image from 'next/image';
 import { Modal } from '@/components/modal';
 import { Noise } from '@/components/noise';
 import { formatPrice } from '@/lib/formatters';
@@ -67,16 +66,31 @@ export function Selection() {
 
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 
-  const currentPrice = getCurrentPrice(
-    answers.quantity.value,
-    answers.deliveries.value as DeliveryOption,
+  const currentPrice = useMemo(
+    () =>
+      getCurrentPrice(
+        answers.quantity.value,
+        answers.deliveries.value as DeliveryOption,
+      ),
+    [answers.quantity.value, answers.deliveries.value],
   );
-  const displayPrice =
-    answers.deliveries.value &&
-    formatPrice(
+  const displayPrice = useMemo(() => {
+    if (!answers.deliveries.value) return null;
+    return formatPrice(
       currentPrice *
         getPriceMultiplier(answers.deliveries.value as DeliveryOption),
     );
+  }, [currentPrice, answers.deliveries.value]);
+
+  const isFormComplete = useMemo(() => {
+    return STEPS_CONFIG.every((step) => {
+      const visible = isStepVisible(step, answers);
+      const value = answers[step.key].value;
+      // If step is visible, it must have a value.
+      // If not visible (like Grind Option for Capsule), skip it.
+      return !visible || value !== null;
+    });
+  }, [answers]);
 
   return (
     <section className='grid gap-x-31 xl:grid-cols-[auto_1fr] grid-rows-[1fr_auto_auto] lg:px-21'>
@@ -187,10 +201,10 @@ export function Selection() {
         onClick={() => {
           setIsCheckoutOpen(true);
         }}
-        disabled={!isFormComplete(answers)}
+        disabled={!isFormComplete}
         className={cn(
           'xl:col-start-2 xl:row-start-3 flex place-items-center place-self-center xl:place-self-end font-fraunces font-black text-lg text-center text-body-inverted  rounded-[6px] py-4 px-8 mt-14 md:mt-10',
-          isFormComplete(answers)
+          isFormComplete
             ? 'bg-brand-primary hover:bg-brand-primary-light cursor-pointer'
             : 'bg-[#E2DEDB]',
         )}
@@ -199,16 +213,6 @@ export function Selection() {
       </button>
     </section>
   );
-}
-
-function isFormComplete(answers: AnswersState): boolean {
-  return STEPS_CONFIG.every((step) => {
-    const visible = isStepVisible(step, answers);
-    const value = answers[step.key].value;
-    // If step is visible, it must have a value.
-    // If not visible (like Grind Option for Capsule), skip it.
-    return !visible || value !== null;
-  });
 }
 
 function OrderSummary({

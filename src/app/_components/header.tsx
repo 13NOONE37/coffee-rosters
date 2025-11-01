@@ -1,4 +1,6 @@
 'use client';
+import { CloseIcon } from '@/assets/close';
+import { HamburgerIcon } from '@/assets/hamburger';
 import { Logo } from '@/assets/logo';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,15 +11,14 @@ export function Header() {
 
   useEffect(() => {
     if (isMenuOpen) {
-      return document.body.classList.add(
-        'overflow-y-hidden',
-        'md:overflow-y-auto',
-      );
+      document.body.classList.add('overflow-y-hidden', 'md:overflow-y-auto');
+    } else {
+      document.body.classList.remove('overflow-y-hidden', 'md:overflow-y-auto');
     }
-    document.body.classList.remove('overflow-y-hidden', 'md:overflow-y-auto');
+    return () =>
+      document.body.classList.remove('overflow-y-hidden', 'md:overflow-y-auto');
   }, [isMenuOpen]);
 
-  //TODO: move icons(close and hamburger) to assets folder as tsx files
   return (
     <header className='flex justify-between items-center py-8 md:py:10 lg:py-11'>
       {/* We are defining here also bottom paddings because we need to know exact height for mobile nav; so we can't depend on other components*/}
@@ -26,21 +27,11 @@ export function Header() {
       </Link>
       <button
         className='block md:hidden w-[16px] h-[15px] relative'
-        onClick={setIsMenuOpen.bind(null, (v) => !v)}
+        onClick={() => setIsMenuOpen((prev) => !prev)}
+        aria-expanded={isMenuOpen}
+        aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
       >
-        {isMenuOpen ? (
-          <Image
-            src={'/assets/shared/mobile/icon-close.svg'}
-            fill
-            alt='Icon of close'
-          />
-        ) : (
-          <Image
-            src={'/assets/shared/mobile/icon-hamburger.svg'}
-            fill
-            alt="Icon of hamburger(open's nav)"
-          />
-        )}
+        {isMenuOpen ? <CloseIcon /> : <HamburgerIcon />}
       </button>
       <nav
         className={` bg-gradient-to-b from-20% from-surface-page to-surface-page/50 absolute top-[81px] left-0 w-full h-full flex flex-col place-items-center pt-10 z-10 ${

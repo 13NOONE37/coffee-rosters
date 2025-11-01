@@ -1,3 +1,4 @@
+import { FocusTrap } from 'focus-trap-react';
 import {
   Dispatch,
   ReactNode,
@@ -31,19 +32,32 @@ export function Modal({
         setIsOpen(false);
       }
     }
+    function handleEscape(e: KeyboardEvent) {
+      if (e.key === 'Escape') {
+        setIsOpen(false);
+      }
+    }
 
     document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleEscape);
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscape);
     };
   }, [setIsOpen]);
 
   if (!container || !isOpen) return null;
 
   return createPortal(
-    <div className='fixed inset-0 z-[9999] bg-black/50 grid place-items-center'>
-      <div ref={childRef}>{children}</div>
+    <div
+      role='dialog'
+      aria-modal='true'
+      className='fixed inset-0 z-[9999] bg-black/50 grid place-items-center'
+    >
+      <FocusTrap>
+        <div ref={childRef}>{children}</div>
+      </FocusTrap>
     </div>,
     container,
   );

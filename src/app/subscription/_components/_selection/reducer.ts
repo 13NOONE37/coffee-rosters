@@ -21,16 +21,6 @@ export function reducer(state: AnswersState, action: Action): AnswersState {
         newState[STEPS.GRIND_OPTION] = { value: null, isOpen: false };
       }
 
-      // const currentIndex = STEPS_CONFIG.findIndex(s=>s.key===action.step)
-      // for(let i= currentIndex+1;i<STEPS_CONFIG.length;i++){
-      //   const nextStep =  STEPS_CONFIG[i]
-      //   if(isStepVisible(nextStep,newState) && !newState[nextStep.key].value){
-      //     setCurrentStep(nextStep.key)
-      //     newState[nextStep.key].isOpen=true;
-      //     break;
-      //   }
-      // }
-
       return newState;
     }
 
