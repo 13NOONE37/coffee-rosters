@@ -46,7 +46,7 @@ export function PlanInstruction({
         <Circle />
       </div>
 
-      <ul className='flex flex-col md:flex-row gap-14 md:gap-2.5 lg:gap-24 mt-28 md:mt-12 lg:mt-17'>
+      <ul className='flex flex-col md:flex-row gap-14 md:gap-2.5 lg:gap-24 mt-20 md:mt-12 lg:mt-17'>
         {instructions.map((item) => (
           <Step {...item} key={item.index} variant={variant} />
         ))}
