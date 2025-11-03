@@ -98,7 +98,7 @@ export function Selection() {
         <div className='w-135 max-w-[calc(100vw-48px)] bg-surface-page rounded-[8px] overflow-hidden pb-6 md:pb-14'>
           <div className='relative bg-surface-card px-6 py-7 md:px-14 md:pt-12 md:pb-10 '>
             <Noise />
-            <h1 className='heading-2 md:font-[2.5rem] text-white'>
+            <h1 className='heading-2 md:font-[2.5rem] text-white relative z-1'>
               Order Summary
             </h1>
           </div>
